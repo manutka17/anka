@@ -1,4 +1,4 @@
 .gradle
 .idea
 build/
-sandbox/src/main/java/MyFirstProgram.java
+sandbox/src/main/java/ru.stqa.pft.sandbox.MyFirstProgram.java
