@@ -11,8 +11,8 @@ public class MyFirstProgram {
         System.out.println(s.area());
         Rectangle r = new Rectangle(4, 6);
         System.out.println(r.area());
-        Point x= new Point(101,102);
-        Point y= new Point(202,203);
+        Point x= new Point(1,2);
+        Point y= new Point(-2,-2);
         System.out.println(distance(x,y));
     }
 
