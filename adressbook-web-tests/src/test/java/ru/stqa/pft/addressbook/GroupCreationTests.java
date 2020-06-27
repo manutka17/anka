@@ -4,7 +4,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.NoAlertPresentException;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
@@ -16,7 +16,7 @@ public class GroupCreationTests {
 
   @BeforeMethod(alwaysRun = true)
   public void setUp() throws Exception {
-    wb = new FirefoxDriver();
+    wb = new ChromeDriver();
     wb.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
     wb.get("http://localhost/addressbook/");
     login("admin", "secret");
@@ -36,8 +36,12 @@ public class GroupCreationTests {
     initGroupCreation();
     fillGroupForm(new GroupData("test1", "test2", "test3"));
     submitGroupCreation();
-    wb.findElement(By.linkText("group page")).click();
+    returntoGroupPage();
     wb.findElement(By.linkText("Logout")).click();
+  }
+
+  private void returntoGroupPage() {
+    wb.findElement(By.linkText("group page")).click();
   }
 
   private void submitGroupCreation() {
