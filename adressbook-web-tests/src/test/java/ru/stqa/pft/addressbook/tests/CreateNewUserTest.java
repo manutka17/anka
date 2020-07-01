@@ -9,10 +9,10 @@ public class CreateNewUserTest extends TestBase {
   @Test
   public void testCreateNewUser() throws Exception {
 
-    app.gotoAddNewPage();
-    app.fillAddPage(new AddData("Анна", "Ивановна", "Гелябова", "+7955555555", "sgdfgsdf@dgdf.ru"));
-    app.submitAddCreation();
-    app.returntoAddPage();
+    app.getNavigationHelper().gotoAddNewPage();
+    app.getGroupHelper().fillAddPage(new AddData("Анна", "Ивановна", "Гелябова", "+7955555555", "sgdfgsdf@dgdf.ru"));
+    app.getGroupHelper().submitAddCreation();
+    app.getGroupHelper().returntoAddPage();
   }
 
 }

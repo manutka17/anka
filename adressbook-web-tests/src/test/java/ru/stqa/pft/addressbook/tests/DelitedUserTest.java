@@ -7,9 +7,9 @@ public class DelitedUserTest extends TestBase {
   @Test
   public void testDelitedUser() throws Exception {
 
-    app.selectFerstUser();
-    app.deletedSelectUser();
-    app.closeInput();
+    app.getGroupHelper().selectFerstUser();
+    app.getGroupHelper().deletedSelectUser();
+    app.getGroupHelper().closeInput();
     //returntoAddPage();
   }
 
