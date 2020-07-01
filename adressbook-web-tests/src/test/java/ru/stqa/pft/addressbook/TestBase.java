@@ -13,6 +13,7 @@ import java.util.concurrent.TimeUnit;
 public class TestBase {
   protected WebDriver wd;
 
+
   @BeforeMethod(alwaysRun = true)
   public void setUp() throws Exception {
     wd = new FirefoxDriver();
@@ -20,6 +21,8 @@ public class TestBase {
     wd.get("http://localhost/addressbook/");
     login("admin", "secret");
   }
+
+
 
   private void login(String username, String password) {
     wd.findElement(By.name("user")).clear();
@@ -57,10 +60,45 @@ public class TestBase {
     wd.findElement(By.linkText("groups")).click();
   }
 
+
+
+  protected void returntoAddPage() {
+    wd.findElement(By.linkText("home page")).click();
+    wd.findElement(By.linkText("Logout")).click();
+  }
+
+  protected void submitAddCreation() {
+    wd.findElement(By.xpath("(//input[@name='submit'])[2]")).click();
+  }
+
+  protected void fillAddPage(AddData addData) {
+    wd.findElement(By.name("firstname")).click();
+    wd.findElement(By.name("firstname")).clear();
+    wd.findElement(By.name("firstname")).sendKeys(addData.getFerstname());
+    wd.findElement(By.name("middlename")).click();
+    wd.findElement(By.name("middlename")).clear();
+    wd.findElement(By.name("middlename")).sendKeys(addData.getMiddlename());
+    wd.findElement(By.name("lastname")).click();
+    wd.findElement(By.name("lastname")).clear();
+    wd.findElement(By.name("lastname")).sendKeys(addData.getLastName());
+    wd.findElement(By.name("mobile")).click();
+    wd.findElement(By.name("mobile")).clear();
+    wd.findElement(By.name("mobile")).sendKeys(addData.getNumber());
+    wd.findElement(By.name("email")).click();
+    wd.findElement(By.name("email")).clear();
+    wd.findElement(By.name("email")).sendKeys(addData.getMail());
+  }
+
+  protected void gotoAddNewPage() {
+    wd.findElement(By.linkText("add new")).click();
+  }
+
   @AfterMethod(alwaysRun = true)
   public void tearDown() throws Exception {
     wd.quit();
   }
+
+
 
   private boolean isElementPresent(By by) {
     try {
@@ -70,6 +108,8 @@ public class TestBase {
       return false;
     }
   }
+
+
 
   private boolean isAlertPresent() {
     try {
@@ -86,5 +126,15 @@ public class TestBase {
 
   protected void selectGroup() {
     wd.findElement(By.name("selected[]")).click();
+  }
+
+
+  protected void deletedSelectUser() {
+    wd.findElement(By.xpath("//input[@value='Delete']")).click();
+  }
+
+  protected void selectFerstUser() {
+    wd.findElement(By.linkText("home")).click();
+    wd.findElement(By.xpath("(//td[@class='center']//input)[1]")).click();
   }
 }
