@@ -9,7 +9,7 @@ public class HelperBase {
   protected FirefoxDriver wd;
 
   public HelperBase(FirefoxDriver wd) {
-    this.wd=wd;
+    this.wd = wd;
   }
 
   public void click(By locator) {
@@ -21,6 +21,7 @@ public class HelperBase {
     wd.findElement(locator).clear();
     wd.findElement(locator).sendKeys(text);
   }
+
   public boolean isElementPresent(By by) {
     try {
       wd.findElement(by);
@@ -37,5 +38,9 @@ public class HelperBase {
     } catch (NoAlertPresentException e) {
       return false;
     }
+  }
+
+  public void closeAlert() {
+    wd.switchTo().alert().accept();
   }
 }

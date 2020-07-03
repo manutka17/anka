@@ -1,12 +1,12 @@
 package ru.stqa.pft.addressbook.appmanajer;
 
-import org.openqa.selenium.By;
 import org.openqa.selenium.firefox.FirefoxDriver;
 
 import java.util.concurrent.TimeUnit;
 
 public class ApplicationManager {
   FirefoxDriver wd;
+  private ContactHelper contactHelper;
   private SessionHelper sessionHelper;
   private NavigationHelper navigationHelper;
   private GroupHelper groupHelper;
@@ -17,21 +17,25 @@ public class ApplicationManager {
     wd.get("http://localhost/addressbook/");
     groupHelper = new GroupHelper(wd);
     navigationHelper = new NavigationHelper(wd);
-    sessionHelper = new SessionHelper(wd);
+    sessionHelper = new SessionHelper(getFirefoxDriver());
+    contactHelper = new ContactHelper(wd);
     sessionHelper.login("admin", "secret");
+
+  }
+
+  public FirefoxDriver getFirefoxDriver() {
+    return wd;
   }
 
 
-
   public void stop() {
+    sessionHelper = new SessionHelper(getFirefoxDriver());
+
+    sessionHelper.logout();
     wd.quit();
   }
 
 
-
-  public void Logout() {
-    wd.findElement(By.linkText("Logout")).click();
-  }
 
   public GroupHelper getGroupHelper() {
     return groupHelper;
@@ -39,5 +43,9 @@ public class ApplicationManager {
 
   public NavigationHelper getNavigationHelper() {
     return navigationHelper;
+  }
+
+  public ContactHelper getContactHelper() {
+    return contactHelper;
   }
 }
