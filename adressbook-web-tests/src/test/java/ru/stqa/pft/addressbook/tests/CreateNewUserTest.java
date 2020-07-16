@@ -11,7 +11,7 @@ public class CreateNewUserTest extends TestBase {
 
     app.getNavigationHelper().gotoHomePage();
     app.getContactHelper().initCreationNewContact();
-    app.getContactHelper().fillAddPage(new AddData("Анна", "Ивановна", "Гелябова", "+7955555555", "sgdfgsdf@dgdf.ru"));
+    app.getContactHelper().fillAddPage(new AddData("Анна", null, null, null, null,"test1"),true);
     app.getContactHelper().submitAddCreation();
     app.getNavigationHelper().gotoHomePage();
   }

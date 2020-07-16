@@ -8,7 +8,7 @@ public class AddressModificationTests extends TestBase {
   public void testAddModification(){
     app.getNavigationHelper().gotoHomePage();
     app.getContactHelper().initContactModification();
-    app.getContactHelper().fillAddPage(new AddData("Аннад", "Ивановна", "Гелябова", "+7955555555", "sgdfgsdf@dgdf.ru"));
+    app.getContactHelper().fillAddPage(new AddData("Аннад", "Ивановна", "Гелябова", "+7955555555", "sgdfgsdf@dgdf.ru",null), false);
     app.getContactHelper().submitAddModification();
     app.getNavigationHelper().gotoHomePage();
   }
