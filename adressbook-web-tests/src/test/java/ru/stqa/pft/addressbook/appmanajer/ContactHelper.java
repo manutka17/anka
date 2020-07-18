@@ -65,15 +65,14 @@ import ru.stqa.pft.addressbook.model.AddData;
 
     public void createContact(AddData contact) {
       initCreationNewContact();
-      fillAddPage(contact);
+      fillAddPage(contact, true);
       submitAddCreation();
       returntoContactPage();
-      //NavigationHelper.gotoHomePage();
 
     }
 
 
     public boolean isTereAContact() {
-      return isElementPresent1(By.name("(//td[@class='center']//input)[1]"));
+      return isElementPresent1(By.xpath("//img[@alt='Edit']"));
     }
   }

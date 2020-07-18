@@ -7,6 +7,7 @@ public class DelitedUserTest extends TestBase {
 
   @Test
   public void testDelitedUser() throws Exception {
+    app.getNavigationHelper().gotoHomePage();
     if (! app.getContactHelper().isTereAContact()){
       app.getContactHelper().createContact(new AddData("Анна", null, null, null, null,"test1"));
     }
