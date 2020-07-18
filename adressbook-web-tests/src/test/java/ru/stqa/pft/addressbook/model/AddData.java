@@ -37,7 +37,5 @@ public class AddData {
     return mail;
   }
 
-  public String getGroup() {
-    return group;
-  }
+  public String getGroup() { return group; }
 }

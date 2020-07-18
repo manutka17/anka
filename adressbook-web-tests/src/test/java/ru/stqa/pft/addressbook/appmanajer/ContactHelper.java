@@ -15,6 +15,10 @@ import ru.stqa.pft.addressbook.model.AddData;
       super(wd);
     }
 
+    public void returntoContactPage() {
+      click(By.linkText("home page"));
+    }
+
 
 
     public void submitAddCreation() {
@@ -57,5 +61,19 @@ import ru.stqa.pft.addressbook.model.AddData;
 
     public void submitAddModification() {
       click(By.name("update"));
+    }
+
+    public void createContact(AddData contact) {
+      initCreationNewContact();
+      fillAddPage(contact);
+      submitAddCreation();
+      returntoContactPage();
+      //NavigationHelper.gotoHomePage();
+
+    }
+
+
+    public boolean isTereAContact() {
+      return isElementPresent1(By.name("(//td[@class='center']//input)[1]"));
     }
   }
