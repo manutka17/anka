@@ -75,4 +75,8 @@ import ru.stqa.pft.addressbook.model.AddData;
     public boolean isTereAContact() {
       return isElementPresent1(By.xpath("//img[@alt='Edit']"));
     }
+
+    public int getUserCount() {
+      return wd.findElements(By.name("selected[]")).size();
+    }
   }
