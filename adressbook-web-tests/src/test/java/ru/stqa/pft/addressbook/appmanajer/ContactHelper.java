@@ -43,17 +43,18 @@ import ru.stqa.pft.addressbook.model.AddData;
       click(By.xpath("//input[@value='Delete']"));
     }
 
-    public void selectFerstUser() {
+    public void selectFerstUser(int index) {
       click(By.linkText("home"));
-      click(By.xpath("(//td[@class='center']//input)[1]"));
+      wd.findElements(By.xpath("(//td[@class='center']//input)[1]")).get(index).click();
+
     }
 
     public void closeInput() {
       closeAlert();
       wd.findElement(By.cssSelector("div.msgbox"));
   }
-    public void initContactModification() {
-      click(By.xpath("//img[@alt='Edit']"));
+    public void initContactModification(int index) {
+      wd.findElements(By.xpath("//img[@alt='Edit']")).get(index).click();
     }
     public void initCreationNewContact() {
       click(By.linkText("add new"));

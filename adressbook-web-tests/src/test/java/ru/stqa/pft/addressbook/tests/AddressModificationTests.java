@@ -8,11 +8,12 @@ public class AddressModificationTests extends TestBase {
   @Test
   public void testAddModification(){
     app.getNavigationHelper().gotoHomePage();
-    int before=app.getContactHelper().getUserCount();
+
     if (! app.getContactHelper().isTereAContact()){
       app.getContactHelper().createContact(new AddData("Анна", null, null, null, null,"test1"));
     }
-    app.getContactHelper().initContactModification();
+    int before=app.getContactHelper().getUserCount();
+    app.getContactHelper().initContactModification(before-1);
     app.getContactHelper().fillAddPage(new AddData("Аннад", "Ивановна", "Гелябова", "+7955555555", "sgdfgsdf@dgdf.ru",null), false);
     app.getContactHelper().submitAddModification();
 

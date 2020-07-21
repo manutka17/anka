@@ -15,7 +15,7 @@ public class DelitedUserTest extends TestBase {
 
     }
     int before=app.getContactHelper().getUserCount();
-    app.getContactHelper().selectFerstUser();
+    app.getContactHelper().selectFerstUser(before-1);
     app.getContactHelper().deletedSelectUser();
 
     app.getContactHelper().closeAlert();
