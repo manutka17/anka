@@ -77,6 +77,6 @@ import ru.stqa.pft.addressbook.model.AddData;
     }
 
     public int getUserCount() {
-      return wd.findElements(By.name("selected[]")).size();
+      return wd.findElements(By.xpath("//img[@alt='Edit']")).size();
     }
   }

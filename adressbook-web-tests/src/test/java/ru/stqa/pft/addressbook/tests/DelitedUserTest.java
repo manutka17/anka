@@ -18,7 +18,8 @@ public class DelitedUserTest extends TestBase {
     app.getContactHelper().selectFerstUser();
     app.getContactHelper().deletedSelectUser();
 
-    app.getContactHelper().closeInput();
+    app.getContactHelper().closeAlert();
+    app.getNavigationHelper().gotoHomePage();
     int after=app.getContactHelper().getUserCount();
     Assert.assertEquals(after, before-1);
 
