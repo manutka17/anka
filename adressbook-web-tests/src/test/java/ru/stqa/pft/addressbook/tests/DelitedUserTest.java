@@ -9,10 +9,12 @@ public class DelitedUserTest extends TestBase {
   @Test
   public void testDelitedUser() throws Exception {
     app.getNavigationHelper().gotoHomePage();
-    int before=app.getContactHelper().getUserCount();
+
     if (! app.getContactHelper().isTereAContact()){
       app.getContactHelper().createContact(new AddData("Анна", null, null, null, null,"test1"));
+
     }
+    int before=app.getContactHelper().getUserCount();
     app.getContactHelper().selectFerstUser();
     app.getContactHelper().deletedSelectUser();
 
