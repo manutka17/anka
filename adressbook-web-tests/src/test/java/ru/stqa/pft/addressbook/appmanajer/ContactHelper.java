@@ -50,7 +50,7 @@ import ru.stqa.pft.addressbook.model.AddData;
 
     public void closeInput() {
       closeAlert();
-
+      wd.findElement(By.cssSelector("div.msgbox"));
   }
     public void initContactModification() {
       click(By.xpath("//img[@alt='Edit']"));
