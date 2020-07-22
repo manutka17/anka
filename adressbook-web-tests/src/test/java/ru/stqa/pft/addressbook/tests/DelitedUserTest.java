@@ -3,7 +3,6 @@ package ru.stqa.pft.addressbook.tests;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import ru.stqa.pft.addressbook.model.AddData;
-import ru.stqa.pft.addressbook.model.GroupData;
 
 import java.util.List;
 
@@ -18,14 +17,14 @@ public class DelitedUserTest extends TestBase {
 
     }
     //int before=app.getContactHelper().getUserCount();
-    List<GroupData> before = app.getGroupHelper().getGroupList();
+    List<AddData> before = app.getContactHelper().getContactList();
 
     app.getContactHelper().selectFerstUser(before.size()-1);
     app.getContactHelper().deletedSelectUser();
 
     app.getContactHelper().closeAlert();
     app.getNavigationHelper().gotoHomePage();
-    List<GroupData> after = app.getGroupHelper().getGroupList();
+    List<AddData> after = app.getContactHelper().getContactList();
     //int after=app.getContactHelper().getUserCount();
     Assert.assertEquals(after.size(), before.size()-1);
 

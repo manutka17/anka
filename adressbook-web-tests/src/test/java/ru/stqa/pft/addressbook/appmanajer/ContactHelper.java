@@ -3,12 +3,16 @@ package ru.stqa.pft.addressbook.appmanajer;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.Select;
 import org.testng.Assert;
 import ru.stqa.pft.addressbook.model.AddData;
 
+import java.util.ArrayList;
+import java.util.List;
 
-  public class ContactHelper extends HelperBase {
+
+public class ContactHelper extends HelperBase {
 
 
     public ContactHelper(WebDriver wd) {
@@ -45,7 +49,11 @@ import ru.stqa.pft.addressbook.model.AddData;
 
     public void selectFerstUser(int index) {
       click(By.linkText("home"));
-      wd.findElements(By.xpath("(//td[@class='center']//input)[1]")).get(index).click();
+      wd.findElements(By.name("selected[]")).get(index).click();
+      //wd.findElements(By.xpath("//table[@id='maintable']/tbody/tr[2]")).get(index).click();
+      //wd.findElements(By.xpath("(//td[@class='center']//input)[1]")).get(index).click();
+
+
 
     }
 
@@ -79,5 +87,20 @@ import ru.stqa.pft.addressbook.model.AddData;
 
     public int getUserCount() {
       return wd.findElements(By.xpath("//img[@alt='Edit']")).size();
+    }
+
+    public List<AddData> getContactList() {
+      List<AddData> contacts = new ArrayList<AddData>();
+     // List<WebElement> crt = wd.findElements(By.xpath("//table[@id='maintable']/tbody/tr"));
+      List<WebElement> tds = wd.findElements(By.cssSelector("tr.entry"));
+      for (WebElement element : tds) {
+        List<WebElement> elements=element.findElements(By.cssSelector("tr.entry"));
+        String ferstname = elements.get(2).getText();
+        String lastname = elements.get(1).getText();
+        AddData contact = new AddData(ferstname,null,lastname , null, null, null);
+        contacts.add(contact);
+      }
+      return  contacts;
+
     }
   }
