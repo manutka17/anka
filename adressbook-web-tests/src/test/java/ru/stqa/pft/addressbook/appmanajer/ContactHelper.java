@@ -101,7 +101,8 @@ public class ContactHelper extends HelperBase {
 
         String ferstname = elements.get(2).getText();
         String lastname = elements.get(1).getText();
-        AddData contact = new AddData(ferstname,null,lastname , null, null, null);
+        String id = element.findElement(By.tagName("input")).getAttribute("value");
+        AddData contact = new AddData(id,ferstname,null,lastname , null, null, null);
         contacts.add(contact);
       }
       return  contacts;
