@@ -55,8 +55,7 @@ public class AddData {
     this.id = null;
     this.ferstname = ferstname;
     this.middlename = middlename;
-    this.lastName = lastName;
-    this.number = number;
+    this.lastName = lastName;    this.number = number;
     this.mail = mail;
     this.group =group;
   }

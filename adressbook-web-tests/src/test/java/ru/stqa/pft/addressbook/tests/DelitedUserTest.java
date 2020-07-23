@@ -25,11 +25,9 @@ public class DelitedUserTest extends TestBase {
     app.getContactHelper().closeAlert();
     app.getNavigationHelper().gotoHomePage();
     List<AddData> after = app.getContactHelper().getContactList();
-    //int after=app.getContactHelper().getUserCount();
     Assert.assertEquals(after.size(), before.size()-1);
 
     before.remove(before.size()-1);
-    //for (int i = 0; i < after.size(); i++) {
     Assert.assertEquals(before, after);
   }
 

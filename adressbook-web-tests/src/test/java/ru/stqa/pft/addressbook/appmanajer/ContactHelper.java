@@ -48,7 +48,7 @@ public class ContactHelper extends HelperBase {
     }
 
     public void selectFerstUser(int index) {
-      click(By.linkText("home"));
+     // click(By.linkText("home"));
       wd.findElements(By.name("selected[]")).get(index).click();
       //wd.findElements(By.xpath("//table[@id='maintable']/tbody/tr[2]")).get(index).click();
       //wd.findElements(By.xpath("(//td[@class='center']//input)[1]")).get(index).click();
@@ -97,7 +97,9 @@ public class ContactHelper extends HelperBase {
 
       for (WebElement element : tds) {
         //List<WebElement> elements=element.findElements(By.cssSelector("tr.entry"));
-        List<WebElement> elements=element.findElements(By.xpath("//tr[@name='entry']"));
+       // List<WebElement> elements=element.findElements(By.xpath("//tr[@name='entry']"));
+        List<WebElement> elements=element.findElements(By.tagName("td"));
+
 
         String ferstname = elements.get(2).getText();
         String lastname = elements.get(1).getText();
