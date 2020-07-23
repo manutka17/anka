@@ -29,7 +29,6 @@ public class AddressModificationTests extends TestBase {
 
     before.remove(before.size() - 1);
     before.add(contact);
-
     Comparator<? super AddData> byId = (q1, q2) -> Integer.compare(q1.getId(), q2.getId());
     before.sort(byId);
     after.sort(byId);
