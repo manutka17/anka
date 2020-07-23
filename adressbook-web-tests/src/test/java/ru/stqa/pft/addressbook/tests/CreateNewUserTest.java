@@ -24,8 +24,8 @@ public class CreateNewUserTest extends TestBase {
       if (q.getId() > max) {
         max = q.getId();
       }
-
     }
+
     group.setId(max);
     before.add(group);
     Assert.assertEquals(new HashSet<Object>(before), new HashSet<Object>(after));
