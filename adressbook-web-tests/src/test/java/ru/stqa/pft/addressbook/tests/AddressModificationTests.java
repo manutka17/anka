@@ -4,22 +4,22 @@ import org.testng.Assert;
 import org.testng.annotations.Test;
 import ru.stqa.pft.addressbook.model.AddData;
 
-import java.util.HashSet;
+import java.util.Comparator;
 import java.util.List;
 
 public class AddressModificationTests extends TestBase {
   @Test
-  public void testAddModification(){
+  public void testAddModification() {
     app.getNavigationHelper().gotoHomePage();
 
-    if (! app.getContactHelper().isTereAContact()){
-      app.getContactHelper().createContact(new AddData("Анна", null, "Спалкина", null, null,"test1"));
+    if (!app.getContactHelper().isTereAContact()) {
+      app.getContactHelper().createContact(new AddData("Анна", null, "Спалкина", null, null, "test1"));
     }
 
     List<AddData> before = app.getContactHelper().getContactList();
-    app.getContactHelper().initContactModification(before.size()-1);
-    AddData contact = new AddData(before.get(before.size()-1).getId(),"Аннад", "Ивановна", "АГелябова", "+7955555555", "sgdfgsdf@dgdf.ru", "test1");
-    app.getContactHelper().fillAddPage(contact,false);
+    app.getContactHelper().initContactModification(before.size() - 1);
+    AddData contact = new AddData(before.get(before.size() - 1).getId(), "Аннад", "Ивановна", "АГелябова", "+7955555555", "sgdfgsdf@dgdf.ru", "test1");
+    app.getContactHelper().fillAddPage(contact, false);
     app.getContactHelper().submitAddModification();
 
     app.getNavigationHelper().gotoHomePage();
@@ -27,9 +27,13 @@ public class AddressModificationTests extends TestBase {
     Assert.assertEquals(after.size(), before.size());
 
 
-    before.remove(before.size()-1);
+    before.remove(before.size() - 1);
     before.add(contact);
-    Assert.assertEquals(new HashSet<Object>(before), new HashSet<Object>(after));
+
+    Comparator<? super AddData> byId = (q1, q2) -> Integer.compare(q1.getId(), q2.getId());
+    before.sort(byId);
+    after.sort(byId);
+    Assert.assertEquals(before, after);
 
   }
 }

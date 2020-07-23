@@ -3,7 +3,7 @@ package ru.stqa.pft.addressbook.appmanajer;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
-import  org.openqa.selenium.remote.BrowserType;
+import org.openqa.selenium.remote.BrowserType;
 
 import java.util.concurrent.TimeUnit;
 
@@ -21,9 +21,9 @@ public class ApplicationManager {
   }
 
   public void init() {
-    if (browser.equals(BrowserType.FIREFOX)){
+    if (browser.equals(BrowserType.FIREFOX)) {
       wd = new FirefoxDriver();
-    } else if (browser.equals(BrowserType.CHROME)){
+    } else if (browser.equals(BrowserType.CHROME)) {
       wd = new ChromeDriver();
 
     }
@@ -48,7 +48,6 @@ public class ApplicationManager {
     sessionHelper.logout();
     wd.quit();
   }
-
 
 
   public GroupHelper getGroupHelper() {

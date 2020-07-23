@@ -3,7 +3,7 @@ package ru.stqa.pft.addressbook.tests;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import ru.stqa.pft.addressbook.appmanajer.ApplicationManager;
-import  org.openqa.selenium.remote.BrowserType;
+import org.openqa.selenium.remote.BrowserType;
 
 public class TestBase {
 

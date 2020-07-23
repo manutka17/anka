@@ -14,22 +14,15 @@ public class CreateNewUserTest extends TestBase {
   public void testCreateNewUser() throws Exception {
     app.getNavigationHelper().gotoHomePage();
     List<AddData> before = app.getContactHelper().getContactList();
-    AddData group = new AddData("Анна", null, "Веревкина", null, null,"test1");
+    AddData group = new AddData("Анна", null, "Веревкина", null, null, "test1");
     app.getContactHelper().createContact(group);
     List<AddData> after = app.getContactHelper().getContactList();
-    Assert.assertEquals(after.size(), before.size()+1);
+    Assert.assertEquals(after.size(), before.size() + 1);
 
-    int max = 0;
-    for (AddData q : after) {
-      if (q.getId() > max) {
-        max = q.getId();
-      }
-    }
-
-    group.setId(max);
+    group.setId(after.stream().max((o1, o2) -> Integer.compare(o1.getId(), o2.getId())).get().getId());
     before.add(group);
     Assert.assertEquals(new HashSet<Object>(before), new HashSet<Object>(after));
   }
-  }
+}
 
 

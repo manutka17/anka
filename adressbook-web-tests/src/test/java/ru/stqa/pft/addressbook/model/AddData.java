@@ -7,10 +7,7 @@ public class AddData {
   private final String lastName;
   private final String number;
   private final String mail;
-  private  String group;
-
-
-
+  private String group;
 
 
   public int getId() {
@@ -24,16 +21,27 @@ public class AddData {
     this.lastName = lastName;
     this.number = number;
     this.mail = mail;
-    this.group =group;
+    this.group = group;
   }
-  public AddData( String ferstname, String middlename, String lastName, String number, String mail, String group) {
-    this.id = 0;
+
+
+  @Override
+  public int hashCode() {
+    int result = ferstname != null ? ferstname.hashCode() : 0;
+    result = 31 * result + (lastName != null ? lastName.hashCode() : 0);
+    return result;
+  }
+
+  public AddData(String ferstname, String middlename, String lastName, String number, String mail, String group) {
+    this.id = Integer.MAX_VALUE;
     this.ferstname = ferstname;
     this.middlename = middlename;
-    this.lastName = lastName;    this.number = number;
+    this.lastName = lastName;
+    this.number = number;
     this.mail = mail;
-    this.group =group;
+    this.group = group;
   }
+
   public void setId(int id) {
     this.id = id;
   }
@@ -54,17 +62,8 @@ public class AddData {
 
     AddData addData = (AddData) o;
 
-    if (id != addData.id) return false;
     if (ferstname != null ? !ferstname.equals(addData.ferstname) : addData.ferstname != null) return false;
     return lastName != null ? lastName.equals(addData.lastName) : addData.lastName == null;
-  }
-
-  @Override
-  public int hashCode() {
-    int result = id;
-    result = 31 * result + (ferstname != null ? ferstname.hashCode() : 0);
-    result = 31 * result + (lastName != null ? lastName.hashCode() : 0);
-    return result;
   }
 
   public String getFerstname() {
@@ -88,5 +87,7 @@ public class AddData {
     return mail;
   }
 
-  public String getGroup() { return group; }
+  public String getGroup() {
+    return group;
+  }
 }
