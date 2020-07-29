@@ -72,14 +72,25 @@ public class ContactHelper extends HelperBase {
     click(By.name("update"));
   }
 
-  public void createContact(AddData contact) {
+  public void create(AddData contact) {
     initCreationNewContact();
     fillAddPage(contact, true);
     submitAddCreation();
     returntoContactPage();
 
   }
+  public void modify(int index, AddData contact) {
+    initContactModification(index);
+    fillAddPage(contact, false);
+    submitAddModification();
 
+  }
+  public void delete(int index) {
+    selectFerstUser(index);
+    deletedSelectUser();
+    closeAlert();
+
+  }
 
   public boolean isTereAContact() {
     return isElementPresent1(By.xpath("//img[@alt='Edit']"));
@@ -89,7 +100,7 @@ public class ContactHelper extends HelperBase {
     return wd.findElements(By.xpath("//img[@alt='Edit']")).size();
   }
 
-  public List<AddData> getContactList() {
+  public List<AddData> list() {
     List<AddData> contacts = new ArrayList();
     List<WebElement> tds = wd.findElements(By.xpath("//tr[@name='entry']"));
     for (WebElement element : tds) {
