@@ -1,28 +1,20 @@
 package ru.stqa.pft.addressbook.model;
 
 public class AddData {
-  private int id;
-  private final String ferstname;
-  private final String middlename;
-  private final String lastName;
-  private final String number;
-  private final String mail;
+  private int id = Integer.MAX_VALUE;
+  private  String ferstname;
+  private  String middlename;
+  private  String lastName;
+  private  String number;
+  private  String mail;
   private String group;
+
 
 
   public int getId() {
     return id;
   }
 
-  public AddData(int id, String ferstname, String middlename, String lastName, String number, String mail, String group) {
-    this.id = id;
-    this.ferstname = ferstname;
-    this.middlename = middlename;
-    this.lastName = lastName;
-    this.number = number;
-    this.mail = mail;
-    this.group = group;
-  }
 
 
   @Override
@@ -32,18 +24,38 @@ public class AddData {
     return result;
   }
 
-  public AddData(String ferstname, String middlename, String lastName, String number, String mail, String group) {
-    this.id = Integer.MAX_VALUE;
+  public AddData withId(int id) {
+    this.id = id;
+    return this;
+  }
+  public AddData withFerstname(String ferstname) {
     this.ferstname = ferstname;
-    this.middlename = middlename;
-    this.lastName = lastName;
-    this.number = number;
-    this.mail = mail;
-    this.group = group;
+    return this;
   }
 
-  public void setId(int id) {
-    this.id = id;
+  public AddData withMiddlename(String middlename) {
+    this.middlename = middlename;
+    return this;
+  }
+
+  public AddData withLastName(String lastName) {
+    this.lastName = lastName;
+    return this;
+  }
+
+  public AddData withNumber(String number) {
+    this.number = number;
+    return this;
+  }
+
+  public AddData withMail(String mail) {
+    this.mail = mail;
+    return this;
+  }
+
+  public AddData withGroup(String group) {
+    this.group = group;
+    return this;
   }
 
   @Override

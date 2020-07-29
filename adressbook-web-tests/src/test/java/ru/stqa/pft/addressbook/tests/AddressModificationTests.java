@@ -14,7 +14,7 @@ public class AddressModificationTests extends TestBase {
     app.goTo().HomePage();
 
     if (app.contact().list().size()==0) {
-      app.contact().create(new AddData("Анна", null, "Спалкина", null, null, "test1"));
+      app.contact().create(new AddData().withFerstname("Анна").withLastName("Спалкина").withGroup("test1"));
     }
   }
   @Test
@@ -23,7 +23,8 @@ public class AddressModificationTests extends TestBase {
 
     List<AddData> before = app.contact().list();
     int index= before.size() - 1;
-    AddData contact = new AddData(before.get(index).getId(), "Аннад", "Ивановна", "АГелябова", "+7955555555", "sgdfgsdf@dgdf.ru", "test1");
+    AddData contact = new AddData()
+            .withId(before.get(index).getId()).withFerstname("Аннад").withMiddlename("Ивановна").withLastName("АГелябова").withNumber("+7955555555").withMail("sgdfgsdf@dgdf.ru").withGroup("test1");
 
     app.contact().modify(index, contact);
     app.goTo().HomePage();

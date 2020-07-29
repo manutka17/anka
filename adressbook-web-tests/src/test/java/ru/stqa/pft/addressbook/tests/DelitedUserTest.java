@@ -13,7 +13,7 @@ public class DelitedUserTest extends TestBase {
     app.goTo().HomePage();
 
     if (app.contact().list().size()==0) {
-      app.contact().create(new AddData("Анна", null, null, null, null, "test1"));
+      app.contact().create(new AddData().withFerstname("Анна").withGroup( "test1"));
 
     }
   }

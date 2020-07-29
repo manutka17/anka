@@ -14,7 +14,7 @@ public class CreateNewUserTest extends TestBase {
   public void testCreateNewUser() throws Exception {
     app.goTo().HomePage();
     List<AddData> before = app.contact().list();
-    AddData group = new AddData("Анна", null, "Веревкина", null, null, "test1");
+    AddData group = new AddData().withFerstname("Анна").withLastName("Веревкина").withGroup("test1");
     app.contact().create(group);
     List<AddData> after = app.contact().list();
     Assert.assertEquals(after.size(), before.size() + 1);
