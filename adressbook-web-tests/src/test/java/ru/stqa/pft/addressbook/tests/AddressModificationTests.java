@@ -10,7 +10,7 @@ import java.util.List;
 public class AddressModificationTests extends TestBase {
   @Test
   public void testAddModification() {
-    app.getNavigationHelper().gotoHomePage();
+    app.goTo().gotoHomePage();
 
     if (!app.getContactHelper().isTereAContact()) {
       app.getContactHelper().createContact(new AddData("Анна", null, "Спалкина", null, null, "test1"));
@@ -22,7 +22,7 @@ public class AddressModificationTests extends TestBase {
     app.getContactHelper().fillAddPage(contact, false);
     app.getContactHelper().submitAddModification();
 
-    app.getNavigationHelper().gotoHomePage();
+    app.goTo().gotoHomePage();
     List<AddData> after = app.getContactHelper().getContactList();
     Assert.assertEquals(after.size(), before.size());
 

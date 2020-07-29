@@ -12,7 +12,7 @@ public class CreateNewUserTest extends TestBase {
 
   @Test
   public void testCreateNewUser() throws Exception {
-    app.getNavigationHelper().gotoHomePage();
+    app.goTo().gotoHomePage();
     List<AddData> before = app.getContactHelper().getContactList();
     AddData group = new AddData("Анна", null, "Веревкина", null, null, "test1");
     app.getContactHelper().createContact(group);

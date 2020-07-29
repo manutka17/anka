@@ -10,7 +10,7 @@ public class DelitedUserTest extends TestBase {
 
   @Test
   public void testDelitedUser() throws Exception {
-    app.getNavigationHelper().gotoHomePage();
+    app.goTo().gotoHomePage();
 
     if (!app.getContactHelper().isTereAContact()) {
       app.getContactHelper().createContact(new AddData("Анна", null, null, null, null, "test1"));
@@ -23,7 +23,7 @@ public class DelitedUserTest extends TestBase {
     app.getContactHelper().deletedSelectUser();
 
     app.getContactHelper().closeAlert();
-    app.getNavigationHelper().gotoHomePage();
+    app.goTo().gotoHomePage();
     List<AddData> after = app.getContactHelper().getContactList();
     Assert.assertEquals(after.size(), before.size() - 1);
 
