@@ -16,14 +16,6 @@ public class AddData {
   }
 
 
-
-  @Override
-  public int hashCode() {
-    int result = ferstname != null ? ferstname.hashCode() : 0;
-    result = 31 * result + (lastName != null ? lastName.hashCode() : 0);
-    return result;
-  }
-
   public AddData withId(int id) {
     this.id = id;
     return this;
@@ -59,23 +51,32 @@ public class AddData {
   }
 
   @Override
-  public String toString() {
-    return "AddData{" +
-            "id=" + id +
-            ", ferstname='" + ferstname + '\'' +
-            ", lastName='" + lastName + '\'' +
-            '}';
-  }
-
-  @Override
   public boolean equals(Object o) {
     if (this == o) return true;
     if (o == null || getClass() != o.getClass()) return false;
 
     AddData addData = (AddData) o;
 
+    if (id != addData.id) return false;
     if (ferstname != null ? !ferstname.equals(addData.ferstname) : addData.ferstname != null) return false;
     return lastName != null ? lastName.equals(addData.lastName) : addData.lastName == null;
+  }
+
+  @Override
+  public int hashCode() {
+    int result = id;
+    result = 31 * result + (ferstname != null ? ferstname.hashCode() : 0);
+    result = 31 * result + (lastName != null ? lastName.hashCode() : 0);
+    return result;
+  }
+
+  @Override
+  public String toString() {
+    return "AddData{" +
+            "id=" + id +
+            ", ferstname='" + ferstname + '\'' +
+            ", lastName='" + lastName + '\'' +
+            '}';
   }
 
   public String getFerstname() {

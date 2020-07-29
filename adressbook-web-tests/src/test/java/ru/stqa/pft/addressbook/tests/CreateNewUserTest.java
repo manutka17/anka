@@ -4,8 +4,7 @@ import org.testng.Assert;
 import org.testng.annotations.Test;
 import ru.stqa.pft.addressbook.model.AddData;
 
-import java.util.Comparator;
-import java.util.List;
+import java.util.Set;
 
 public class CreateNewUserTest extends TestBase {
 
@@ -13,16 +12,14 @@ public class CreateNewUserTest extends TestBase {
   @Test
   public void testCreateNewUser() throws Exception {
     app.goTo().HomePage();
-    List<AddData> before = app.contact().list();
+    Set<AddData> before = app.contact().all();
     AddData group = new AddData().withFerstname("Анна").withLastName("Веревкина").withGroup("test1");
     app.contact().create(group);
-    List<AddData> after = app.contact().list();
+    Set<AddData> after = app.contact().all();
     Assert.assertEquals(after.size(), before.size() + 1);
 
+    group.withId(after.stream().mapToInt((g)->g.getId()).max().getAsInt());
     before.add(group);
-    Comparator<? super AddData> byId = (q1, q2) -> Integer.compare(q1.getId(), q2.getId());
-    before.sort(byId);
-    after.sort(byId);
     Assert.assertEquals(before, after);
   }
 }

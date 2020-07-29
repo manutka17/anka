@@ -9,13 +9,6 @@ public class GroupData {
   private  String footer;
 
 
-
-  @Override
-  public int hashCode() {
-    return name != null ? name.hashCode() : 0;
-  }
-
-
   public GroupData withId(Integer id) {
     this.id = id;
     return this;
@@ -44,7 +37,6 @@ public class GroupData {
             '}';
   }
 
-
   @Override
   public boolean equals(Object o) {
     if (this == o) return true;
@@ -52,7 +44,15 @@ public class GroupData {
 
     GroupData groupData = (GroupData) o;
 
+    if (id != null ? !id.equals(groupData.id) : groupData.id != null) return false;
     return name != null ? name.equals(groupData.name) : groupData.name == null;
+  }
+
+  @Override
+  public int hashCode() {
+    int result = id != null ? id.hashCode() : 0;
+    result = 31 * result + (name != null ? name.hashCode() : 0);
+    return result;
   }
 
   public Integer getId() {

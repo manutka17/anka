@@ -9,7 +9,9 @@ import org.testng.Assert;
 import ru.stqa.pft.addressbook.model.AddData;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 
 public class ContactHelper extends HelperBase {
@@ -54,13 +56,20 @@ public class ContactHelper extends HelperBase {
 
 
   }
+  public void selectFerstUserById(int id) {
+    wd.findElement(By.cssSelector("input[value='"+id+"']")).click();
+  }
 
   public void closeInput() {
     closeAlert();
     wd.findElement(By.cssSelector("div.msgbox"));
   }
 
-  public void initContactModification(int index) {
+  public void initContactModification() {
+    //wd.findElements(By.xpath("//img[@alt='Edit']")).get(index).click();
+    click(By.xpath("//img[@alt='Edit']"));
+  }
+  public void initContactModificationById(int index) {
     wd.findElements(By.xpath("//img[@alt='Edit']")).get(index).click();
   }
 
@@ -79,8 +88,11 @@ public class ContactHelper extends HelperBase {
     returntoContactPage();
 
   }
-  public void modify(int index, AddData contact) {
-    initContactModification(index);
+  public void modify(AddData contact) {
+
+
+    selectFerstUserById(contact.getId());
+    initContactModification();
     fillAddPage(contact, false);
     submitAddModification();
 
@@ -91,7 +103,11 @@ public class ContactHelper extends HelperBase {
     closeAlert();
 
   }
-
+  public void delete(AddData contact) {
+    selectFerstUserById(contact.getId());
+    deletedSelectUser();
+    closeAlert();
+  }
   public boolean isTereAContact() {
     return isElementPresent1(By.xpath("//img[@alt='Edit']"));
   }
@@ -113,4 +129,19 @@ public class ContactHelper extends HelperBase {
     return contacts;
 
   }
+  public Set<AddData> all() {
+    Set<AddData> contacts = new HashSet<AddData>();
+    List<WebElement> tds = wd.findElements(By.xpath("//tr[@name='entry']"));
+    for (WebElement element : tds) {
+      List<WebElement> elements = element.findElements(By.tagName("td"));
+      String ferstname = elements.get(2).getText();
+      String lastname = elements.get(1).getText();
+      Integer id = Integer.parseInt(element.findElement(By.tagName("input")).getAttribute("value"));
+      contacts.add(new AddData().withId(id).withFerstname(ferstname).withLastName(lastname));
+    }
+    return contacts;
+
+  }
+
+
 }
