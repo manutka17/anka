@@ -2,15 +2,12 @@ package ru.stqa.pft.addressbook.appmanajer;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-
 import org.openqa.selenium.WebElement;
 import ru.stqa.pft.addressbook.model.GroupData;
 import ru.stqa.pft.addressbook.model.Groups;
 
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 
 public class GroupHelper extends HelperBase {
@@ -61,6 +58,7 @@ public class GroupHelper extends HelperBase {
     initGroupCreation();
     fillGroupForm(group);
     submitGroupCreation();
+    groupCashe = null;
     returntoGroupPage();
 
   }
@@ -69,6 +67,7 @@ public class GroupHelper extends HelperBase {
     initGroupModification();
     fillGroupForm(group);
     submitGroupModification();
+    groupCashe = null;
     returntoGroupPage();
   }
   public void delete(int index) {
@@ -79,6 +78,7 @@ public class GroupHelper extends HelperBase {
   public void delete(GroupData group) {
     selectGroupById(group.getId());
     deleteSelectedGroups();
+    groupCashe = null;
     returntoGroupPage();
 
   }
@@ -87,9 +87,10 @@ public class GroupHelper extends HelperBase {
 
   }
 
-  public int getGroupCount() {
+  public int count() {
     return wd.findElements(By.name("selected[]")).size();
   }
+  private  Groups groupCashe = null;
 
   public List<GroupData> list() {
     List<GroupData> groups = new ArrayList<GroupData>();
@@ -102,14 +103,17 @@ public class GroupHelper extends HelperBase {
     return groups;
   }
   public Groups all() {
-    Groups groups = new Groups();
+    if (groupCashe != null) {
+      return new Groups(groupCashe);
+    }
+    groupCashe = new Groups();
     List<WebElement> elements = wd.findElements(By.cssSelector("span.group"));
     for (WebElement element : elements) {
       String name = element.getText();
       Integer id = Integer.parseInt(element.findElement(By.tagName("input")).getAttribute("value"));
-      groups.add(new GroupData().withId(id).withName(name));
+      groupCashe.add(new GroupData().withId(id).withName(name));
     }
-    return groups;
+    return new Groups(groupCashe);
   }
 
 
