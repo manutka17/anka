@@ -8,6 +8,32 @@ public class AddData {
   private  String number;
   private  String mail;
   private String group;
+  private String homePhone;
+  private String mobilePhone;
+  private String workPhone;
+
+  public  String getWorkPhone() {
+    return workPhone;
+  }
+  public AddData withWorkPhone (String workPhone){
+    this.workPhone = workPhone;
+    return this;
+  }
+  public  String getMobilePhone() {
+    return mobilePhone;
+  }
+  public AddData withMobilePhone (String mobilePhone){
+    this.mobilePhone = mobilePhone;
+    return this;
+  }
+  public  String getHomePhone() {
+    return homePhone;
+  }
+  public AddData withHomePhone (String homePhone){
+    this.homePhone = homePhone;
+    return this;
+  }
+
 
 
 
