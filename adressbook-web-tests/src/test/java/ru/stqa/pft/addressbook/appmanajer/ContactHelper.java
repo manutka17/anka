@@ -134,12 +134,10 @@ public class ContactHelper extends HelperBase {
       Integer id = Integer.parseInt(element.findElement(By.tagName("input")).getAttribute("value"));
       String ferstname = elements.get(2).getText();
       String lastname = elements.get(1).getText();
-      String[] phones = elements.get(5).getText().split("\n");
+      String allPhones = elements.get(5).getText();
 
       contacts.add(new AddData().withId(id).withFerstname(ferstname).withLastName(lastname)
-              .withHomePhone(phones[0])
-              .withMobilePhone(phones[1])
-              .withWorkPhone(phones[2]));
+              .withAllPhones(allPhones));
     }
     return contacts;
 

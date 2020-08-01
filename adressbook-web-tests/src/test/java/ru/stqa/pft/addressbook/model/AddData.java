@@ -11,6 +11,19 @@ public class AddData {
   private String homePhone;
   private String mobilePhone;
   private String workPhone;
+  private  String allPhones;
+
+
+  public String getAllPhones() {
+    return allPhones;
+  }
+
+  public AddData withAllPhones(String allPhones) {
+    this.allPhones = allPhones;
+    return this;
+  }
+
+
 
   public  String getWorkPhone() {
     return workPhone;
@@ -129,4 +142,6 @@ public class AddData {
   public String getGroup() {
     return group;
   }
+
+
 }
