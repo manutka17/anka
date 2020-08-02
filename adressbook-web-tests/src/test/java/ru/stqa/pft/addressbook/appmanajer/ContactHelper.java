@@ -33,6 +33,7 @@ public class ContactHelper extends HelperBase {
     type(By.name("firstname"), addData.getFerstname());
     type(By.name("middlename"), addData.getMiddlename());
     type(By.name("lastname"), addData.getLastName());
+    attach(By.name("photo"), addData.getPhoto());
     type(By.name("address"), addData.getAddress());
     type(By.name("home"), addData.getHomePhone());
     type(By.name("mobile"), addData.getMiddlename());
