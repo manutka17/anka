@@ -47,17 +47,17 @@ public class AddDataGenerator {
     XStream xstream = new XStream();
     xstream.processAnnotations(AddData.class);
     String xml = xstream.toXML(contacts);
-    Writer writer = new FileWriter(file);
-    writer.write(xml);
-    writer.close();
+    try (Writer writer = new FileWriter(file)){
+      writer.write(xml);
+    }
   }
   private void saveAsCsv(List<AddData> contacts, File file) throws IOException {
     System.out.println(new File(".").getAbsolutePath());
-    Writer writer = new FileWriter(file);
-    for (AddData contact: contacts){
-      writer.write(String.format("%s;%s;%s;%s\n",contact.getFerstname(),contact.getLastName(),contact.getEmail1(),contact.getGroup()));
+    try (Writer writer = new FileWriter(file)) {
+      for (AddData contact : contacts) {
+        writer.write(String.format("%s;%s;%s;%s\n", contact.getFerstname(), contact.getLastName(), contact.getEmail1(), contact.getGroup()));
+      }
     }
-    writer.close();
   }
 
 
