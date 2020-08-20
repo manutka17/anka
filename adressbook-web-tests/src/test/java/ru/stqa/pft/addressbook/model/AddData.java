@@ -2,27 +2,52 @@ package ru.stqa.pft.addressbook.model;
 
 import com.thoughtworks.xstream.annotations.XStreamAlias;
 import com.thoughtworks.xstream.annotations.XStreamOmitField;
+import org.hibernate.annotations.Type;
 
+import javax.persistence.*;
 import java.io.File;
-@XStreamAlias("contact")
+import java.util.Objects;
 
+@XStreamAlias("contact")
+@Entity
+@Table(name="addressbook")
 public class AddData {
   @XStreamOmitField
+  @Id
+  @Column(name="id")
   private int id = Integer.MAX_VALUE;
+  @Column(name="firstname")
   private String ferstname;
+  @Transient
   private String middlename;
+  @Column(name="lastname")
   private String lastName;
+  @Transient
   private String number;
+  @Transient
   private String mail;
+  @Transient
   private String group;
+  @Column(name="home")
+  @Type(type="text")
   private String homePhone;
+  @Transient
   private String mobilePhone;
+  @Column(name="work")
+  @Type(type="text")
   private String workPhone;
+  @Transient
   private String allPhones;
+  @Column(name="email")
+  @Type(type="text")
   private String email1;
+  @Transient
   private String email2;
+  @Transient
   private String email3;
+  @Transient
   private String allEmail;
+  @Transient
   private String address;
 
   public File getPhoto() {
@@ -33,7 +58,7 @@ public class AddData {
     this.photo = photo;
     return this;
   }
-
+  @Transient
   private File photo;
 
 
@@ -158,32 +183,31 @@ public class AddData {
   }
 
   @Override
-  public boolean equals(Object o) {
-    if (this == o) return true;
-    if (o == null || getClass() != o.getClass()) return false;
-
-    AddData addData = (AddData) o;
-
-    if (id != addData.id) return false;
-    if (ferstname != null ? !ferstname.equals(addData.ferstname) : addData.ferstname != null) return false;
-    return lastName != null ? lastName.equals(addData.lastName) : addData.lastName == null;
-  }
-
-  @Override
-  public int hashCode() {
-    int result = id;
-    result = 31 * result + (ferstname != null ? ferstname.hashCode() : 0);
-    result = 31 * result + (lastName != null ? lastName.hashCode() : 0);
-    return result;
-  }
-
-  @Override
   public String toString() {
     return "AddData{" +
             "id=" + id +
             ", ferstname='" + ferstname + '\'' +
             ", lastName='" + lastName + '\'' +
+            ", homePhone='" + homePhone + '\'' +
+            ", email1='" + email1 + '\'' +
             '}';
+  }
+
+  @Override
+  public boolean equals(Object o) {
+    if (this == o) return true;
+    if (o == null || getClass() != o.getClass()) return false;
+    AddData addData = (AddData) o;
+    return id == addData.id &&
+            Objects.equals(ferstname, addData.ferstname) &&
+            Objects.equals(lastName, addData.lastName) &&
+            Objects.equals(homePhone, addData.homePhone) &&
+            Objects.equals(email1, addData.email1);
+  }
+
+  @Override
+  public int hashCode() {
+    return Objects.hash(id, ferstname, lastName, homePhone, email1);
   }
 
   public String getFerstname() {

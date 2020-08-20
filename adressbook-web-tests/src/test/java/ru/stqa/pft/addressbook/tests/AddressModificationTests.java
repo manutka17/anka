@@ -12,25 +12,24 @@ import static org.testng.Assert.assertEquals;
 public class AddressModificationTests extends TestBase {
   @BeforeMethod
   public  void ensurePreconditions(){
-    app.goTo().HomePage();
-
-    if (app.contact().list().size()==0) {
-      app.contact().create(new AddData().withFerstname("Анна").withLastName("Спалкина").withGroup("test1"));
+    if(app.db().contacts().size()==0){
+      app.goTo().HomePage();
+      app.contact().create(new AddData().withFerstname("Анна").withLastName("Спалкина").withGroup("test1").withHomePhone("6567").withEmail1("dffd@fdgf.tr"));
     }
   }
   @Test
   public void testAddModification() {
 
 
-    Contacts before = app.contact().all();
+    Contacts before = app.db().contacts();
     AddData modifiedContact = before.iterator().next();
     AddData contact = new AddData()
-            .withId(modifiedContact.getId()).withFerstname("Аннад").withMiddlename("Ивановна").withLastName("АГелябова").withNumber("+7955555555").withMail("sgdfgsdf@dgdf.ru").withGroup("test1");
-
+            .withId(modifiedContact.getId()).withFerstname("Аннад").withMiddlename("Ивановна").withLastName("АГелябова").withHomePhone("+7955555555").withEmail1("sgdfgsdf@dgdf.ru").withGroup("test1");
+    app.goTo().HomePage();
     app.contact().modify(contact);
     app.goTo().HomePage();
 
-    Contacts after = app.contact().all();
+    Contacts after = app.db().contacts();
     assertEquals(after.size(), before.size());
     assertThat(after, equalTo(before.withOut(modifiedContact).withAdded(contact)));
 

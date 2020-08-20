@@ -33,10 +33,10 @@ public class ContactHelper extends HelperBase {
     type(By.name("firstname"), addData.getFerstname());
     type(By.name("middlename"), addData.getMiddlename());
     type(By.name("lastname"), addData.getLastName());
-    attach(By.name("photo"), addData.getPhoto());
+    //attach(By.name("photo"), addData.getPhoto());
     type(By.name("address"), addData.getAddress());
     type(By.name("home"), addData.getHomePhone());
-    type(By.name("mobile"), addData.getMiddlename());
+    type(By.name("mobile"), addData.getMobilePhone());
     type(By.name("work"), addData.getWorkPhone());
     type(By.name("email"), addData.getEmail1());
     type(By.name("email2"), addData.getEmail2());
@@ -66,7 +66,7 @@ public class ContactHelper extends HelperBase {
 
   }
   public void selectFerstUserById(int id) {
-    wd.findElement(By.cssSelector("input[value='"+id+"']")).click();
+    wd.findElement(By.cssSelector("input[id='"+id+"']")).click();
   }
 
   public void closeInput() {
@@ -74,9 +74,9 @@ public class ContactHelper extends HelperBase {
     wd.findElement(By.cssSelector("div.msgbox"));
   }
 
-  public void initContactModification() {
+  public void initContactModification(int id) {
     //wd.findElements(By.xpath("//img[@alt='Edit']")).get(index).click();
-    click(By.xpath("//img[@alt='Edit']"));
+    wd.findElement(By.cssSelector(String.format("a[href='edit.php?id=%s']",id))).click();
   }
 
 
@@ -99,7 +99,7 @@ public class ContactHelper extends HelperBase {
 
 
     selectFerstUserById(contact.getId());
-    initContactModification();
+    initContactModification(contact.getId());
     fillAddPage(contact, false);
     submitAddModification();
 
