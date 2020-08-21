@@ -14,7 +14,7 @@ public class AddressModificationTests extends TestBase {
   public  void ensurePreconditions(){
     if(app.db().contacts().size()==0){
       app.goTo().HomePage();
-      app.contact().create(new AddData().withFerstname("Анна").withLastName("Спалкина").withGroup("test1").withHomePhone("6567").withEmail1("dffd@fdgf.tr"));
+      //app.contact().create(new AddData().withFerstname("Анна").withLastName("Спалкина").withGroup("test1").withHomePhone("6567").withEmail1("dffd@fdgf.tr"));
     }
   }
   @Test
@@ -24,7 +24,7 @@ public class AddressModificationTests extends TestBase {
     Contacts before = app.db().contacts();
     AddData modifiedContact = before.iterator().next();
     AddData contact = new AddData()
-            .withId(modifiedContact.getId()).withFerstname("Аннад").withMiddlename("Ивановна").withLastName("АГелябова").withHomePhone("+7955555555").withEmail1("sgdfgsdf@dgdf.ru").withGroup("test1");
+            .withId(modifiedContact.getId()).withFerstname("Аннад").withMiddlename("Ивановна").withLastName("АГелябова").withHomePhone("+7955555555").withEmail1("sgdfgsdf@dgdf.ru");
     app.goTo().HomePage();
     app.contact().modify(contact);
     app.goTo().HomePage();

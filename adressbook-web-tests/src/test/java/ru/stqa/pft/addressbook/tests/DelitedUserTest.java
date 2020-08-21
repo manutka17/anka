@@ -14,7 +14,7 @@ public class DelitedUserTest extends TestBase {
   public void ensurePreconditions() {
     if(app.db().contacts().size()==0){
       app.goTo().HomePage();
-      app.contact().create(new AddData().withFerstname("Анна").withGroup( "test1"));
+      //app.contact().create(new AddData().withFerstname("Анна").withGroup( "test1"));
 
     }
   }

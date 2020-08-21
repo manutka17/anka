@@ -5,6 +5,7 @@ import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 import ru.stqa.pft.addressbook.model.AddData;
 import ru.stqa.pft.addressbook.model.Contacts;
+import ru.stqa.pft.addressbook.model.Groups;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -52,6 +53,7 @@ public class CreateNewUserTest extends TestBase {
      // File photo = new File("src/test/resources/panda.png");
       //AddData group = new AddData().withFerstname(ferstname).withLastName(lastname).withPhoto(photo).withEmail1(email1)
              // .withGroup("test1");
+    Groups before = app.db().groups();
       app.goTo().HomePage();
       Contacts before = app.db().contacts();
       app.contact().create(contact);
