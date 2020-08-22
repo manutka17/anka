@@ -38,12 +38,19 @@ public class ApplicationManager {
     wd.get(properties.getProperty("web.baseUrl"));
   }
 
-  public WebDriver getFirefoxDriver() {
+  public WebDriver getDriver() {
     return wd;
   }
 
 
   public void stop() {
     wd.quit();
+  }
+  public HttpSession newSession(){
+    return  new HttpSession(this);
+  }
+
+  public String  getProperty(String key) {
+    return properties.getProperty(key);
   }
 }
