@@ -240,4 +240,9 @@ public class AddData {
   public Groups getGroups() {
     return new Groups(groups);
   }
+
+  public AddData inGroup(GroupData group) {
+    groups.add(group);
+    return  this;
+  }
 }

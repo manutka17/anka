@@ -14,7 +14,7 @@ public class AddressModificationTests extends TestBase {
   public  void ensurePreconditions(){
     if(app.db().contacts().size()==0){
       app.goTo().HomePage();
-      //app.contact().create(new AddData().withFerstname("Анна").withLastName("Спалкина").withGroup("test1").withHomePhone("6567").withEmail1("dffd@fdgf.tr"));
+      app.contact().create(new AddData().withFerstname("Анна").withLastName("Спалкина").withHomePhone("6567").withEmail1("dffd@fdgf.tr"));
     }
   }
   @Test

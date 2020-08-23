@@ -50,9 +50,10 @@ public class CreateNewUserTest extends TestBase {
   public void testCreateNewUser(AddData contact) throws Exception {
 
      // File photo = new File("src/test/resources/panda.png");
-      //AddData group = new AddData().withFerstname(ferstname).withLastName(lastname).withPhoto(photo).withEmail1(email1)
-             // .withGroup("test1");
-    
+
+      //AddData newContact = new AddData().withFerstname("Анна").withLastName("lastname").withEmail1("email1")
+             //.inGroup(groups.iterator().next());
+
       app.goTo().HomePage();
       Contacts before = app.db().contacts();
       app.contact().create(contact);

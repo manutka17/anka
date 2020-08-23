@@ -48,6 +48,7 @@ public class ContactHelper extends HelperBase {
 
 
     if (creation) {
+      //if (AddData.getGroups().size()>0)
      //new Select(wd.findElement(By.name("new_group"))).selectByVisibleText(addData.getGroup());
     } else {
       Assert.assertFalse(isElementPresent1(By.name("new_group")));
