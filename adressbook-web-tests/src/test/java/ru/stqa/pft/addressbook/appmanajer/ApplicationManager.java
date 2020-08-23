@@ -54,7 +54,7 @@ public class ApplicationManager {
       contactHelper = new ContactHelper(wd);
       sessionHelper.login(properties.getProperty("web.adminLogin"), properties.getProperty("web.adminPassword"));
     }
-  
+
 
     public WebDriver getFirefoxDriver () {
       return wd;
@@ -76,6 +76,7 @@ public class ApplicationManager {
     public NavigationHelper goTo () {
       return navigationHelper;
     }
+
 
     public ContactHelper contact () {
       return contactHelper;
