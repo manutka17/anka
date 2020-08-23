@@ -56,10 +56,10 @@ public class ApplicationManager {
     return properties.getProperty(key);
   }
 
-  public RegistrationHelper registration() {
-    if (registrationHelper == null)
-    registrationHelper = new RegistrationHelper(this);
+  //public RegistrationHelper registration() {
+    //if (registrationHelper == null)
+    //registrationHelper = new RegistrationHelper(this);
 
-  }
+  //}
 
 }
