@@ -21,6 +21,13 @@ public class ApplicationManager {
   private MailHelper mailHelper;
   private DBHelper db;
   private ResetPasswordHelper rspass;
+  public SoapHelper soapHelper;
+  public SoapHelper soap(){
+    if (soapHelper == null){
+      soapHelper = new SoapHelper(this);
+    }
+    return soapHelper;
+  }
 
 
   public ApplicationManager(String browser) {
